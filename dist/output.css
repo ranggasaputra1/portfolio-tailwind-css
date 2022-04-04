@@ -617,14 +617,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 2rem;
 }
 
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
-}
-
 .block {
   display: block;
 }
@@ -1142,14 +1134,6 @@ body {
     width: 33.333333%;
   }
 
-  .md\:w-3 {
-    width: 0.75rem;
-  }
-
-  .md\:w-full {
-    width: 100%;
-  }
-
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -1202,10 +1186,6 @@ body {
 
   .lg\:w-2\/3 {
     width: 66.666667%;
-  }
-
-  .lg\:w-full {
-    width: 100%;
   }
 
   .lg\:max-w-full {
