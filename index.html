@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -43,6 +43,20 @@
                   <li class="group">
                     <a href="#contact" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary">Kontak</a>
                   </li>
+                  <li>
+                    <div class="flex">
+                      <span class="mr-2 text-sm text-slate-500">light</span>
+                      <input type="checkbox" class="hidden" id="daek-toggle">
+                      <label for="dark-toggle">
+                        <div class="flex h-5 w-9 cursor-pointer items-center rounded-full bg-slate-500 p-1">
+                          <div class="toggle-circle h-4 w-4 rounded-full bg-white">
+
+                          </div>
+                        </div>
+                      </label>
+                      <span class="mr-2 text-sm text-slate-500">dark</span>
+                    </div>
+                  </li>
                 </ul>
               </nav>
             </div>
@@ -56,7 +70,7 @@
       <div class="container">
         <div class="flex flex-wrap">
           <div class="w-full self-center px-4 lg:w-1/2">
-            <h1 class="text-base font-semibold text-primary md:text-xl">Hallo Semua 👋, Saya <span class="block font-bold text-dark text-4xl mt-1 lg:text-5xl">Rangga Saputra</span></h1>
+            <h1 class="text-base font-semibold text-primary md:text-xl mb-3">Hallo Semua 👋, Saya <span class="block font-bold text-dark text-4xl mt-1 lg:text-5xl">Rangga Saputra</span></h1>
             <h2 class="font-medium text-secondary text-lg mb-5 lg:text-2xl">Mahasiswa | Cohort Bangkit Academy 2023 <br>  
             <p class="font-medium text-secondary mb-10 reading-relaxed">"Belajar web programming itu greget dan menyenangkan bukan." <span class="text-dark font-bold">bukan!</span></p>
             <a href="https://www.instagram.com/rangga_saputra37/"  target="_blank" class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full hover::shadow-lg hover:opacity-80 transition duration-300 ease-in-out">Hubungi Saya</a>
@@ -322,6 +336,12 @@
       </div>
     </footer>
     <!-- footer section End -->
+
+    <!-- Back to Top Start -->
+      <a href="#home" class="fixed hidden justify-center items-center bottom-4 right-4 z-[9999] h-14 w-14 bg-primary rounded-full p-4 hover:animate-bounce" id="to-top">
+        <span class="block w-5 h-5 border-t-2 border-l-2 rotate-45 mt-2"></span>
+      </a>
+    <!-- Back to Top End -->
 
     
 
