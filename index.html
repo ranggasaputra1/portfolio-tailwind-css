@@ -279,15 +279,15 @@
           <div class="w-full px-4">
             <div class="max-w-xl mx-auto text-center mb-16">
               <h4 class="font-semibold text-lg text-primary mb-2">Kontak</h4>
-              <h2 class="font-bold text-dark text-3xl mb-4 sm:text-4xl lg:text-5xl dark:text-white">Hubungi Saya</h2>
+              <h2 class="font-bold text-dark text-3xl mb-4 sm:text-4xl lg:text-5xl dark:text-white flex items-center justify-center">Hubungi Saya <img src="dist/img/whatsapp.png" alt="whatsapp" class="w-5 h-5 ml-2 mr-2 mt-2"></h2>
               <p class="font-medium text-md text-secondary md:text-lg"></p>
             </div>
           </div>
           <form action="#" onsubmit="sendMessageToWhatsapp()">
             <div class="w-full lg:w-2/3 lg:mx-auto">
           <div class="w-full px-4 mb-8" required>
-            <label for="name" class="text-base font-bold text-primary">Nama Lengkap</label>
-            <input type="text" id="name" name="nama" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary" required>
+            <label for="name" class="text-base font-bold text-primary">Nama</label>
+            <input type="text" id="nama" name="nama" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary" required>
           </div>
           <div class="w-full px-4 mb-8">
             <label for="email" class="text-base font-bold text-primary">Email</label>
@@ -299,9 +299,12 @@
             </textarea>
             </div>
             <div class="w-full px-4" id="notif">
-              <button class="text-base font-seibold text-white bg-primary py-3 px-8 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-500" type="submit" id="btn">Kirim Pesan</button>
-            </div>
+              <button class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-500 flex items-center justify-center" type="submit" id="btn">
+                  Kirim Pesan ke
+                  <img src="dist/img/whatsapp.png" alt="whatsapp" class="w-4 h-4 ml-2 mr-2"> Saya
+              </button>
           </div>
+          
         </form>
           </div>
       </section>
@@ -385,7 +388,7 @@
 
     <script>
       function sendMessageToWhatsapp() {
-            const urlToWhatsapp = `https://wa.me/6281324936410?text=Halo, nama saya ${name.value},${email.value}, ${message.value}`;
+            const urlToWhatsapp = `https://wa.me/6281324936410?text=Halo, nama saya ${nama.value}, dan email ${email.value}, ${message.value}`;
             window.open(urlToWhatsapp, "_blank");
         }
     </script>
