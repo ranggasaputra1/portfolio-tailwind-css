@@ -14,17 +14,20 @@
   }
 }
 
-/* Kelas untuk animasi */
+/* Tambahkan ini untuk sembunyikan dulu semua elemen animasi */
 .animate-fade-in {
   opacity: 0;
-  animation: slideUpAndFade 0.7s forwards;
-  animation-delay: var(--animation-delay, 0s);
+  transform: translateY(20px);
+  visibility: hidden; /* <--- ini kunci biar gak kedip */
+  transition: all 0.8s ease-out;
 }
 
-/* Kelas untuk efek hover pada kartu */
-.card-hover-effect {
-  transition: transform 0.3s ease-in-out;
+.animate-fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
 }
+
 
 .card-hover-effect:hover {
   transform: translateY(-5px);

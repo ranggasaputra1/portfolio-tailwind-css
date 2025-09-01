@@ -63,8 +63,29 @@ if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.match
   document.documentElement.classList.remove('dark')
 }
 
-// --- Logika Lightbox ---
+// --- Intersection Observer untuk Animasi Scroll ---
+const observerOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.2
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
 document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.animate-fade-in').forEach((el, index) => {
+    el.style.setProperty('--animation-delay', `${index * 0.1}s`);
+    observer.observe(el);
+  });
+
+  // --- Logika Lightbox ---
   const lightbox = document.getElementById('lightbox');
   const lightboxImage = document.getElementById('lightbox-image');
   const lightboxClose = document.getElementById('lightbox-close');
@@ -77,19 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = ''; // Mengaktifkan kembali scrolling
   };
   
-  // Fungsi untuk membuka lightbox
-  const openLightbox = (imageUrl) => {
-    lightboxImage.src = imageUrl;
-    lightbox.classList.remove('hidden');
-    document.body.style.overflow = 'hidden'; // Nonaktifkan scrolling
-  };
-
   // Event listener untuk tombol tutup
   lightboxClose.addEventListener('click', closeLightbox);
   
   // Event listener untuk menutup lightbox saat mengklik latar belakang
   lightbox.addEventListener('click', (e) => {
-    // Memastikan klik hanya terjadi pada latar belakang, bukan gambar
     if (e.target === lightbox) {
       closeLightbox();
     }
@@ -99,7 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
   galleryItems.forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault(); 
-      openLightbox(e.target.src);
+      const imageUrl = e.target.src;
+      lightboxImage.src = imageUrl;
+      lightbox.classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // Nonaktifkan scrolling
     });
   });
 
@@ -110,8 +126,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
-// Anda bisa menghapus script.js ini jika semua kode digabung
-// <script src="dist/js/script.js"></script>
-
-

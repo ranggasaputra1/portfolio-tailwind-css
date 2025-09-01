@@ -6,118 +6,200 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio | Rangga Saputra</title>
     <link rel="stylesheet" href="dist/css/final.css" />
-    <style>
-      /* CSS untuk animasi - Anda bisa memindahkannya ke final.css */
-      @keyframes slideUpAndFade {
-        0% {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
 
+    <style>
+      /* Fade In Up */
       .animate-fade-in {
         opacity: 0;
-        animation: slideUpAndFade 0.7s forwards;
-        animation-delay: var(--animation-delay, 0s);
+        transform: translateY(20px);
+        transition: all 0.8s ease-out;
+      }
+      .animate-fade-in.show {
+        opacity: 1;
+        transform: translateY(0);
       }
 
+      /* Hover effect untuk card */
       .card-hover-effect {
         transition: transform 0.3s ease-in-out;
       }
-
       .card-hover-effect:hover {
         transform: translateY(-5px);
       }
     </style>
-    <script>
-      //Script agar ketika merubah ke dark mode saat halaman di refresh tetap menjadi darkmode
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-    </script>
-    
-  </head>
-  <body>
 
-    <div id="lightbox" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 flex justify-center items-center z-[99999]">
-      <span id="lightbox-close" class="absolute top-4 right-6 text-white text-5xl cursor-pointer opacity-80 hover:opacity-100">&times;</span>
-      <img id="lightbox-image" src="" alt="" class="max-w-[90%] max-h-[90%] object-contain">
+    <script>
+      // Script agar dark mode tetap tersimpan
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- Lightbox -->
+    <div
+      id="lightbox"
+      class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 flex justify-center items-center z-[99999]"
+    >
+      <span
+        id="lightbox-close"
+        class="absolute top-4 right-6 text-white text-5xl cursor-pointer opacity-80 hover:opacity-100"
+        >&times;</span
+      >
+      <img
+        id="lightbox-image"
+        src=""
+        alt=""
+        class="max-w-[90%] max-h-[90%] object-contain"
+      />
     </div>
 
-    <header class="bg-transparent absolute top-0 left-0 w-full flex place-items-center z-10">
-        <div class="container">
-          <div class="flex items-center justify-between relative">
-            <div class="px-4">
-              <a href="#home" class="font-bold text-lg text-primary block py-6">Rangga Saputra</a>
-            </div>
-            <div class="flex items-center px-4">
-              <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 lg:hidden">
-                <span class="hamburger-line transition duration-300 ease in-out origin-top-left"></span>
-                <span class="hamburger-line transition duration-300 ease in-out"></span>
-                <span class="hamburger-line transition duration-300 ease in-out origin-bottom-left"></span>
-              </button>
-              <nav id="nav-menu" class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none dark:bg-dark dark:shadow-slate-100 lg:dark:bg-transparent">
-                <ul class="block lg:flex">
-                  <li class="group">
-                    <a href="#home" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Beranda</a>
-                  </li>
-                  <li class="group">
-                    <a href="#about" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Tentang Saya</a>
-                  </li>
-                  <li class="group">
-                    <a href="#portfolio" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Portfolio Saya</a>
-                  </li>
-                  <li class="group">
-                    <a href="#clients" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Mitra</a>
-                  </li>
-                  <li class="group">
-                    <a href="#blog" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Project</a>
-                  </li>
-                  <li class="group">
-                    <a href="#contact" class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white">Kontak</a>
-                  </li>
-                  <li class=" mt-2 lg:mt-0 flex items-center pl-8">
-                    <div class="flex">
-                      <span class="mr-2 text-sm text-slate-500">light</span>
-                      <input type="checkbox" class="hidden" id="dark-toggle">
-                      <label for="dark-toggle">
-                        <div class="flex h-5 w-9 cursor-pointer items-center rounded-full bg-slate-500 p-1">
-                          <div class="toggle-circle h-4 w-4 rounded-full bg-white transition duration-300 ease-out">
-
-                          </div>
-                        </div>
-                      </label>
-                      <span class="ml-2 text-sm text-slate-500">dark</span>
-                    </div>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+    <!-- Header -->
+    <header
+      class="bg-transparent fixed top-0 left-0 w-full flex place-items-center z-10"
+    >
+      <div class="container">
+        <div class="flex items-center justify-between relative">
+          <div class="px-4">
+            <a
+              href="#home"
+              class="font-bold text-lg text-primary block py-6"
+              >Rangga Saputra</a
+            >
+          </div>
+          <div class="flex items-center px-4">
+            <button
+              id="hamburger"
+              name="hamburger"
+              type="button"
+              class="block absolute right-4 lg:hidden"
+            >
+              <span
+                class="hamburger-line transition duration-300 ease in-out origin-top-left"
+              ></span>
+              <span
+                class="hamburger-line transition duration-300 ease in-out"
+              ></span>
+              <span
+                class="hamburger-line transition duration-300 ease in-out origin-bottom-left"
+              ></span>
+            </button>
+            <nav
+              id="nav-menu"
+              class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none dark:bg-dark dark:shadow-slate-100 lg:dark:bg-transparent"
+            >
+              <ul class="block lg:flex">
+                <li class="group">
+                  <a
+                    href="#home"
+                    class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white"
+                    >Beranda</a
+                  >
+                </li>
+                <li class="group">
+                  <a
+                    href="#about"
+                    class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white"
+                    >Tentang Saya</a
+                  >
+                </li>
+                <li class="group">
+                  <a
+                    href="#portfolio"
+                    class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white"
+                    >Portfolio Saya</a
+                  >
+                </li>
+                <li class="group">
+                  <a
+                    href="#clients"
+                    class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white"
+                    >Mitra</a
+                  >
+                </li>
+                <li class="group">
+                  <a
+                    href="#blog"
+                    class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white"
+                    >Project</a
+                  >
+                </li>
+                <li class="group">
+                  <a
+                    href="#contact"
+                    class="text-base text-dark py-2 mx-8 flex group-hover:text-primary dark:text-white"
+                    >Kontak</a
+                  >
+                </li>
+                <li class="mt-2 lg:mt-0 flex items-center pl-8">
+                  <div class="flex">
+                    <span class="mr-2 text-sm text-slate-500">light</span>
+                    <input type="checkbox" class="hidden" id="dark-toggle" />
+                    <label for="dark-toggle">
+                      <div
+                        class="flex h-5 w-9 cursor-pointer items-center rounded-full bg-slate-500 p-1"
+                      >
+                        <div
+                          class="toggle-circle h-4 w-4 rounded-full bg-white transition duration-300 ease-out"
+                        ></div>
+                      </div>
+                    </label>
+                    <span class="ml-2 text-sm text-slate-500">dark</span>
+                  </div>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
-      </header>
-    <section id="home" class="pt-36 dark:bg-dark" >
+      </div>
+    </header>
+
+   <!-- Section Home -->
+    <section id="home" class="pt-36 dark:bg-dark">
       <div class="container">
         <div class="flex flex-wrap">
           <div class="w-full self-center px-4 lg:w-1/2">
-            <h1 class="text-base font-semibold text-primary md:text-xl mb-3">Hallo Semua 👋, Saya<span class="block font-bold text-dark text-4xl mt-2 lg:text-5xl dark:text-white">Rangga Saputra</span></h1>
-            <h2 class="font-medium text-secondary text-lg mb-5 lg:text-2xl dark:text-white" style="margin-top: 30px;">Mahasiswa | Cohort Bangkit Academy 2023 <br> 
-            <p class="font-medium text-secondary mb-10 reading-relaxed dark:text-white">"A Newbie Backend Developer Full of Dreams"</p>
-            <a href="https://www.instagram.com/rangga_saputra37/"  target="_blank" class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full hover::shadow-lg hover:opacity-80 transition duration-300 ease-in-out">Hubungi Saya</a>
+            <h1
+              class="text-base font-semibold text-primary md:text-xl mb-3 animate-fade-in"
+            >
+              Hallo Semua 👋, Saya<span
+                class="block font-bold text-dark text-4xl mt-2 lg:text-5xl dark:text-white"
+                >Rangga Saputra</span
+              >
+            </h1>
+            <h2
+              class="font-medium text-secondary text-lg mb-5 lg:text-2xl dark:text-white animate-fade-in"
+              style="margin-top: 30px"
+            >
+              Mahasiswa | Cohort Bangkit Academy 2023
+            </h2>
+            <p
+              class="font-medium text-secondary mb-10 reading-relaxed dark:text-white animate-fade-in"
+            >
+              "A Newbie Backend Developer Full of Dreams"
+            </p>
+            <a
+              href="https://www.instagram.com/rangga_saputra37/"
+              target="_blank"
+              class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full hover::shadow-lg hover:opacity-80 transition duration-300 ease-in-out animate-fade-in"
+              >Hubungi Saya</a
+            >
           </div>
 
-          <div class="w-full self-end px-4 lg:w-1/2">
+          <div class="w-full self-end px-4 lg:w-1/2 animate-fade-in">
             <div class="relative mt-10 lg:mt-9 lg:right-0">
-              <img src="dist/img/foto_profil.png" alt="Rangga Saputra" class="max-w-full mx-auto" />
-              <span class="absolute -bottom-0.5 -z-10 left-1/2 -translate-x-1/2 md:scale-120">
-                
-              </span>
+              <img
+                src="dist/img/foto_profil.png"
+                alt="Rangga Saputra"
+                class="max-w-full mx-auto"
+              />
             </div>
           </div>
         </div>
@@ -455,6 +537,22 @@
         const urlToWhatsapp = `https://wa.me/6281324936410?text=Halo, nama saya ${nama.value}, dan email ${email.value}, ${message.value}`;
         window.open(urlToWhatsapp, "_blank");
       }
+
+      document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".animate-fade-in");
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          // kalau animasi hanya mau sekali, tambahkan baris ini
+          // observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    elements.forEach(el => observer.observe(el));
+  });
 
       document.addEventListener('DOMContentLoaded', () => {
   const lightbox = document.getElementById('lightbox');
