@@ -30,8 +30,18 @@
   transform: translateY(-5px);
 }
 
-/* Lightbox Styling */
 #lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999; /* Tingkatkan z-index menjadi nilai yang sangat tinggi */
+  
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
@@ -43,26 +53,31 @@
 }
 
 #lightbox-image {
-  max-width: 90%; /* Maksimal lebar gambar 90% dari lightbox */
-  max-height: 90%; /* Maksimal tinggi gambar 90% dari lightbox */
-  object-fit: contain; /* Memastikan gambar sepenuhnya terlihat tanpa terpotong */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Memberikan efek bayangan */
-  border-radius: 8px; /* Sudut membulat pada gambar */
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
 }
 
 /* Close button for lightbox */
 #lightbox-close {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  top: 1rem;
+  right: 1.5rem;
   color: #fff;
-  font-size: 40px;
+  font-size: 2.5rem; /* Ukuran yang lebih terukur untuk mobile dan desktop */
   cursor: pointer;
-  z-index: 10000; /* Pastikan di atas gambar */
+  z-index: 10000;
   opacity: 0.8;
   transition: opacity 0.2s ease-in-out;
 }
 
 #lightbox-close:hover {
   opacity: 1;
+}
+
+/* Memastikan header berada di bawah lightbox */
+header {
+  z-index: 10;
 }

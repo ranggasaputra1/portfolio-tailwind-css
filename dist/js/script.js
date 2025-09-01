@@ -56,5 +56,62 @@ if (
 } else {
   darkToggle.checked = false;
 }
+//Script agar ketika merubah ke dark mode saat halaman di refresh tetap menjadi darkmode
+if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  document.documentElement.classList.add('dark')
+} else {
+  document.documentElement.classList.remove('dark')
+}
+
+// --- Logika Lightbox ---
+document.addEventListener('DOMContentLoaded', () => {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  const galleryItems = document.querySelectorAll('#portfolio img, #blog img');
+
+  // Fungsi untuk menutup lightbox
+  const closeLightbox = () => {
+    lightbox.classList.add('hidden');
+    document.body.style.overflow = ''; // Mengaktifkan kembali scrolling
+  };
+  
+  // Fungsi untuk membuka lightbox
+  const openLightbox = (imageUrl) => {
+    lightboxImage.src = imageUrl;
+    lightbox.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Nonaktifkan scrolling
+  };
+
+  // Event listener untuk tombol tutup
+  lightboxClose.addEventListener('click', closeLightbox);
+  
+  // Event listener untuk menutup lightbox saat mengklik latar belakang
+  lightbox.addEventListener('click', (e) => {
+    // Memastikan klik hanya terjadi pada latar belakang, bukan gambar
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // Event listener untuk setiap gambar di portfolio dan project
+  galleryItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      openLightbox(e.target.src);
+    });
+  });
+
+  // Event listener untuk tombol ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+      closeLightbox();
+    }
+  });
+});
+
+// Anda bisa menghapus script.js ini jika semua kode digabung
+// <script src="dist/js/script.js"></script>
 
 

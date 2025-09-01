@@ -45,9 +45,10 @@
   </head>
   <body>
 
-   <div id="lightbox" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 flex justify-center items-center z-[9999]">
-  <span id="lightbox-close">&times;</span> <img id="lightbox-image" src="" alt="" class="max-w-[90%] max-h-[90%] object-contain">
-</div>
+    <div id="lightbox" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 flex justify-center items-center z-[99999]">
+      <span id="lightbox-close" class="absolute top-4 right-6 text-white text-5xl cursor-pointer opacity-80 hover:opacity-100">&times;</span>
+      <img id="lightbox-image" src="" alt="" class="max-w-[90%] max-h-[90%] object-contain">
+    </div>
 
     <header class="bg-transparent absolute top-0 left-0 w-full flex place-items-center z-10">
         <div class="container">
@@ -456,49 +457,49 @@
       }
 
       document.addEventListener('DOMContentLoaded', () => {
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImage = document.getElementById('lightbox-image');
-      const lightboxClose = document.getElementById('lightbox-close'); // Dapatkan tombol tutup
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxClose = document.getElementById('lightbox-close'); // Dapatkan tombol tutup
 
-      // Mengambil semua gambar yang akan diberi fungsi lightbox
-      const galleryItems = document.querySelectorAll('#portfolio img, #blog img');
+  // Mengambil semua gambar yang akan diberi fungsi lightbox
+  const galleryItems = document.querySelectorAll('#portfolio img, #blog img');
 
-      // Loop setiap gambar dan tambahkan event listener
-      galleryItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          e.preventDefault(); 
-          
-          const imageUrl = e.target.src;
-          lightboxImage.src = imageUrl;
-          lightbox.classList.add('active'); // Tambahkan kelas 'active'
-          document.body.style.overflow = 'hidden'; // Mencegah scrolling saat lightbox aktif
-        });
-      });
-
-      // Fungsi untuk menutup lightbox
-      const closeLightbox = () => {
-        lightbox.classList.remove('active'); // Hapus kelas 'active'
-        document.body.style.overflow = ''; // Mengaktifkan kembali scrolling
-      };
-
-      // Menyembunyikan lightbox saat latar belakang diklik
-      lightbox.addEventListener('click', (e) => {
-        // Pastikan hanya saat klik di latar belakang atau gambar, bukan tombol close
-        if (e.target === lightbox || e.target === lightboxImage) {
-          closeLightbox();
-        }
-      });
-
-      // Menyembunyikan lightbox saat tombol tutup diklik
-      lightboxClose.addEventListener('click', closeLightbox);
-
-      // Menyembunyikan lightbox saat tombol ESC ditekan
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-          closeLightbox();
-        }
-      });
+  // Loop setiap gambar dan tambahkan event listener
+  galleryItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault(); 
+      
+      const imageUrl = e.target.src;
+      lightboxImage.src = imageUrl;
+      lightbox.classList.add('active'); // Tambahkan kelas 'active'
+      document.body.style.overflow = 'hidden'; // Mencegah scrolling saat lightbox aktif
     });
+  });
+
+  // Fungsi untuk menutup lightbox
+  const closeLightbox = () => {
+    lightbox.classList.remove('active'); // Hapus kelas 'active'
+    document.body.style.overflow = ''; // Mengaktifkan kembali scrolling
+  };
+
+  // Menyembunyikan lightbox saat latar belakang diklik
+  lightbox.addEventListener('click', (e) => {
+    // Pastikan hanya saat klik di latar belakang atau gambar, bukan tombol close
+    if (e.target === lightbox || e.target === lightboxImage) {
+      closeLightbox();
+    }
+  });
+
+  // Menyembunyikan lightbox saat tombol tutup diklik
+  lightboxClose.addEventListener('click', closeLightbox);
+
+  // Menyembunyikan lightbox saat tombol ESC ditekan
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+});
     </script>
     <script src="dist/js/script.js"></script>
 
