@@ -29,3 +29,40 @@
 .card-hover-effect:hover {
   transform: translateY(-5px);
 }
+
+/* Lightbox Styling */
+#lightbox {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+#lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#lightbox-image {
+  max-width: 90%; /* Maksimal lebar gambar 90% dari lightbox */
+  max-height: 90%; /* Maksimal tinggi gambar 90% dari lightbox */
+  object-fit: contain; /* Memastikan gambar sepenuhnya terlihat tanpa terpotong */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Memberikan efek bayangan */
+  border-radius: 8px; /* Sudut membulat pada gambar */
+}
+
+/* Close button for lightbox */
+#lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 10000; /* Pastikan di atas gambar */
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
+}
+
+#lightbox-close:hover {
+  opacity: 1;
+}
