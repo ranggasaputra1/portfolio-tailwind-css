@@ -19,18 +19,20 @@ window.onscroll = function () {
 const hamburger = document.querySelector("#hamburger");
 const navMenu = document.querySelector("#nav-menu");
 
-hamburger.addEventListener("click", function () {
+hamburger.addEventListener("click", function (e) {
+  e.stopPropagation(); // cegah klik bubble ke window
   hamburger.classList.toggle("hamburger-active");
   navMenu.classList.toggle("hidden");
 });
 
-// Klik di luar hamburger
+// Klik di luar hamburger dan navMenu
 window.addEventListener("click", function (e) {
-  if (e.target != hamburger && e.target != navMenu) {
+  if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
     hamburger.classList.remove("hamburger-active");
     navMenu.classList.add("hidden");
   }
 });
+
 
 //Dark Mode Toggle
 const darkToggle = document.querySelector("#dark-toggle");

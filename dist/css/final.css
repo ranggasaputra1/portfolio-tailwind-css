@@ -84,3 +84,31 @@
 header {
   z-index: 10;
 }
+
+.hamburger-line {
+  display: block;
+  width: 28px;
+  height: 3px;
+  margin: 6px auto;
+  background-color: #333;
+  border-radius: 4px;
+  transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1),
+              opacity 0.25s ease-in-out,
+              background-color 0.3s ease;
+  transform-origin: center;
+}
+
+/* Saat aktif */
+.hamburger-active .hamburger-line:nth-child(1) {
+  transform: translateY(9px) rotate(45deg) scaleX(1.1);
+}
+
+.hamburger-active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0.5);
+}
+
+.hamburger-active .hamburger-line:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg) scaleX(1.1);
+}
+
