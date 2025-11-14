@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // === SCRIPT UNTUK PRELOADER AESTHETIC (BARU) ===
 
 
-const MIN_LOAD_TIME_MS = 50; 
+const MIN_LOAD_TIME_MS = 10; 
 
 // 2. Catat waktu saat script mulai dimuat
 const startTime = new Date().getTime();
