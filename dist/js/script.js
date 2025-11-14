@@ -128,3 +128,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+// === SCRIPT UNTUK PRELOADER AESTHETIC (BARU) ===
+
+
+const MIN_LOAD_TIME_MS = 200; 
+
+// 2. Catat waktu saat script mulai dimuat
+const startTime = new Date().getTime();
+
+// 3. Variabel untuk melacak status load
+let isWindowLoaded = false;
+
+// 4. Fungsi untuk menyembunyikan preloader
+function hidePreloader() {
+    const preloader = document.getElementById('preloader');
+    
+    // Mulai proses fade-out
+    preloader.style.opacity = '0';
+    
+    // Hilangkan dari DOM setelah transisi CSS selesai
+    setTimeout(function() {
+        preloader.style.display = 'none';
+    }, 500); // 500ms ini harus sama dengan durasi transisi di CSS Anda
+}
+
+// 5. Fungsi yang akan dieksekusi saat window.onload
+function onWindowLoaded() {
+    isWindowLoaded = true;
+    
+    // Hitung berapa lama waktu loading sebenarnya
+    const loadTime = new Date().getTime() - startTime;
+    
+    if (loadTime >= MIN_LOAD_TIME_MS) {
+        // Jika loading-nya LAMA (lebih dari 1.5 detik),
+        // langsung sembunyikan preloader.
+        hidePreloader();
+    } else {
+        // Jika loading-nya CEPAT (kurang dari 1.5 detik),
+        // tunggu sisa waktunya agar genap 1.5 detik.
+        const remainingTime = MIN_LOAD_TIME_MS - loadTime;
+        setTimeout(hidePreloader, remainingTime);
+    }
+}
+
+// 6. Tetapkan event listener
+window.onload = onWindowLoaded;
